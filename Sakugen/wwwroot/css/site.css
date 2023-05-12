@@ -14,12 +14,15 @@ html {
 }
 
 body {
+    width:100%;
+    height:100%;
     margin-bottom: 60px;
     background: #E7EBCE;
 }
 
-.container{
-    display:flex;
-    align-items:center;
+.container {
+    display: flex;
+    align-items: center;
     justify-content: center;
+    color: #212021;
 }
