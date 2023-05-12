@@ -15,17 +15,20 @@ namespace Sakugen.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Call main view");
             return View();
         }
 
         public IActionResult Privacy()
         {
+            _logger.LogInformation("Call privacy view");
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            _logger.LogInformation("Call error view");
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
