@@ -19,6 +19,13 @@ namespace Sakugen.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Index(string? url = null)
+        {
+            _logger.LogInformation(url);
+            return Content(url);
+        }
+
         public IActionResult Privacy()
         {
             _logger.LogInformation("Call privacy view");

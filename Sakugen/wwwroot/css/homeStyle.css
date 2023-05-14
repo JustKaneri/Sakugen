@@ -33,6 +33,21 @@
     padding-left:20px;
 }
 
+.form-danger{
+    position:absolute;
+    font-size:0.8em;
+    width:100px;
+    height:30px;
+    left:calc(50% - 50px);
+    top: calc(50% - 50px);
+    width:auto;
+    text-align:center;
+    color:red;
+
+    display:flex;
+    align-items:center;
+}
+
 .form-button {
     position: absolute;
     width: 80px;
@@ -40,12 +55,11 @@
     border-radius: 100%;
     right: -50px;
     color: #212021;
-    z-index:2;
-
+    z-index: 2;
     background: url("../assets/convert.png");
-    background-position:center;
+    background-position: center;
     background-size: auto;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
 }
 
 .form-button:hover {

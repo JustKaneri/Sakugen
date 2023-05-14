@@ -1,14 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model Record
 
 <div>
     <h1 class="title">Sakugen</h1>
     <div class="contan">
-        <form method="post" class="form">
-            <input class="form-url" placeholder="Введите ссылку для сокращения..." type="text" />
+        <form asp-controller="Home" method="post" class="form">
+            <span asp-validation-for="Url" class="form-danger"></span>
+            <input class="form-url" asp-for="Url" plform-dangeraceholder="Введите ссылку для сокращения..." type="text" />
             <button class="form-button">
             </button>
+            @section Scripts{
+                @{
+                    <partial name="_ValidationScriptsPartial" />
+                }
+            }
         </form>
         <div class="result">
             <span class="result-title">Ваша ссылка:</span>
@@ -17,3 +24,4 @@
         </div>
     </div>
 </div>
+
