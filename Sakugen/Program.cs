@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Sakugen.Data;
+using Sakugen.Other;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,15 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+
+app.Use(async (context, next) =>
+{
+    if (ApplicationConfig.Url != "")
+        ApplicationConfig.Url = context.Request.Host.ToString();
+
+    await next.Invoke();
+});
+
 app.UseStaticFiles();
 
 app.UseRouting();
