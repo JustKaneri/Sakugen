@@ -1,7 +1,8 @@
-﻿@{
+﻿@using Sakugen.Dto
+@{
     ViewData["Title"] = "Home Page";
 }
-@model Record
+@model RecordDto
 
 <div>
     <h1 class="title">Sakugen</h1>
@@ -19,8 +20,15 @@
         </form>
         <div class="result">
             <span class="result-title">Ваша ссылка:</span>
-            <span class="result-url">dwa</span>
-            <img class="qrcode"/>
+                @{
+                if (Model != null){
+                    <span class="result-url">
+                        @Model.Token
+                    </span>
+                    <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.QrCode))" class="qrcode" />
+                }
+            }
+            
         </div>
     </div>
 </div>

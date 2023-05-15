@@ -20,6 +20,6 @@ namespace Sakugen.Models
         public string? Url { get; set; }
 
         [Column("DateCreate")]
-        public DateTime? DateCreate { get; set; } = DateTime.Now;
+        public DateTime? DateCreate { get; set; } = DateTime.UtcNow;
     }
 }

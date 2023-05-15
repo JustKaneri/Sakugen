@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sakugen.Interface;
 using Sakugen.Models;
 using System.Diagnostics;
 
@@ -7,10 +8,12 @@ namespace Sakugen.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IRecordRepository _repository;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IRecordRepository repository)
         {
             _logger = logger;
+            _repository = repository;
         }
 
         public IActionResult Index()
@@ -20,10 +23,12 @@ namespace Sakugen.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string? url = null)
+        public async Task<IActionResult> Index(string? url = null)
         {
             _logger.LogInformation(url);
-            return Content(url);
+            var record = await _repository.CreateRecord(url);
+
+            return View(record);
         }
 
         public IActionResult Privacy()

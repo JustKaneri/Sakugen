@@ -37,9 +37,9 @@ namespace Sakugen.Repository
             return new RecordDto()
             {
                 Id = record.Id,
-                Token = ApplicationConfig.Url + "//" + record.Token,
+                Token = "http://"+ApplicationConfig.Url + "/" + record.Token,
                 Url = url,
-                QrCode = _codeRepositroy.CreateQRCode(ApplicationConfig.Url + "//" + record.Token)
+                QrCode = _codeRepositroy.CreateQRCode("http://" + ApplicationConfig.Url + "/" + record.Token)
         };
         }
 
