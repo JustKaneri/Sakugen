@@ -9,12 +9,12 @@ namespace Sakugen.Repository
     public class RecordRepository : IRecordRepository
     {
         private readonly DataContext _context;
-        private readonly IRecordImageRepositroy _imageRepositroy;
+        private readonly IQRCodeRepositroy _codeRepositroy;
 
-        public RecordRepository(DataContext context, IRecordImageRepositroy imageRepositroy)
+        public RecordRepository(DataContext context, IQRCodeRepositroy codeRepositroy)
         {
             _context = context;
-            _imageRepositroy = imageRepositroy;
+            _codeRepositroy = codeRepositroy;
         }
 
         public async Task<RecordDto> CreateRecord(string url)
@@ -23,7 +23,6 @@ namespace Sakugen.Repository
 
             record.Url = url;
             record.Token = GenereteToken();
-            record.CodePath = await _imageRepositroy.CreateImages(ApplicationConfig.Url + "//" + record.Token);
 
             try
             {
@@ -32,16 +31,16 @@ namespace Sakugen.Repository
             }
             catch (Exception)
             {
-                _imageRepositroy.Remove(record.CodePath);
                 return null;
             }
 
             return new RecordDto()
             {
                 Id = record.Id,
-                Token = record.Token,
-                Url = url
-            };
+                Token = ApplicationConfig.Url + "//" + record.Token,
+                Url = url,
+                QrCode = _codeRepositroy.CreateQRCode(ApplicationConfig.Url + "//" + record.Token)
+        };
         }
 
         private string GenereteToken()

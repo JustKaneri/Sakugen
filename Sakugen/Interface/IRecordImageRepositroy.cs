@@ -1,11 +1,9 @@
-﻿namespace Sakugen.Interface
+﻿using System.Drawing;
+
+namespace Sakugen.Interface
 {
-    public interface IRecordImageRepositroy
+    public interface IQRCodeRepositroy
     {
-        public Task<string> CreateImages(string url);
-
-        public Task<byte[]> GetImages();
-
-        public void Remove(string path);
+        public byte[] CreateQRCode(string url);
     }
 }

@@ -8,5 +8,6 @@ namespace Sakugen.Dto
         public int Id { get; set; }
         public string Token { get; set; }
         public string? Url { get; set; }
+        public byte[] QrCode { get; set; }
     }
 }

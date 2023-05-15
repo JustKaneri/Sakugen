@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using Sakugen.Data;
+using Sakugen.Interface;
 using Sakugen.Other;
+using Sakugen.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IRecordRepository, RecordRepository>();
+builder.Services.AddScoped<IQRCodeRepositroy, QrCodeRepository>();
 
 builder.Services.AddDbContext<DataContext>(options =>
 {

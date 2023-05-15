@@ -21,9 +21,5 @@ namespace Sakugen.Models
 
         [Column("DateCreate")]
         public DateTime? DateCreate { get; set; } = DateTime.Now;
-
-        [Column("CodePath")]
-        [MaxLength(int.MaxValue)]
-        public string CodePath { get; set; }
     }
 }
