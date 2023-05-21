@@ -22,6 +22,19 @@ namespace Sakugen.Controllers
             return View();
         }
 
+        [HttpGet("{token}")]
+        public IActionResult Map(string token)
+        {
+            _logger.LogInformation("Call map view , token: " + token);
+
+            var result = _repository.GetRecord(token);
+
+            if (result == null)
+                return Redirect("/error");
+
+            return Redirect(result.Url);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Index(string? url = null)
         {

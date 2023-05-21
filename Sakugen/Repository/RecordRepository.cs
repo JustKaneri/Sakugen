@@ -3,6 +3,7 @@ using Sakugen.Dto;
 using Sakugen.Interface;
 using Sakugen.Models;
 using Sakugen.Other;
+using System;
 
 namespace Sakugen.Repository
 {
@@ -40,7 +41,26 @@ namespace Sakugen.Repository
                 Token = "http://"+ApplicationConfig.Url + "/" + record.Token,
                 Url = url,
                 QrCode = _codeRepositroy.CreateQRCode("http://" + ApplicationConfig.Url + "/" + record.Token)
-        };
+            };
+        }
+
+        public RecordDto GetRecord(string token)
+        {
+            if (string.IsNullOrWhiteSpace(token))
+                return null;
+
+            var result = _context.Records.Where(rc => rc.Token == token).FirstOrDefault();
+
+            if (result == null)
+                return null;
+
+            return new RecordDto()
+            {
+                Id = result.Id,
+                Token = "http://" + ApplicationConfig.Url + "/" + result.Token,
+                Url = result.Url,
+                QrCode = _codeRepositroy.CreateQRCode("http://" + ApplicationConfig.Url + "/" +result.Token)
+            };
         }
 
         private string GenereteToken()
