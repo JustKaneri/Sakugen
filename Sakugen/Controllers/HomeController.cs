@@ -38,6 +38,9 @@ namespace Sakugen.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string? url = null)
         {
+            if (string.IsNullOrWhiteSpace(url))
+                return View();
+
             _logger.LogInformation(url);
             var record = await _repository.CreateRecord(url);
 
