@@ -1,0 +1,25 @@
+﻿.found-title {
+    display:block;
+    font-size: 6em;
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 1%;
+    color: #212021;
+    white-space:pre-line;
+
+    text-decoration: none;
+}
+
+.found-title:hover{
+    color: #212021;
+    text-shadow: 0px 0px 2px #212021;
+}
+
+
+@media (max-width: 768px) {
+
+    .found-title {
+        font-size: 4em;
+        margin-top: calc(50vh - 4em);
+    }
+}

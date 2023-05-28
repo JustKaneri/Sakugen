@@ -30,7 +30,7 @@ namespace Sakugen.Controllers
             var result = _repository.GetRecord(token);
 
             if (result == null)
-                return Redirect("/error");
+                return Redirect("/Home/NotFoundPage");
 
             return Redirect(result.Url);
         }
@@ -47,6 +47,10 @@ namespace Sakugen.Controllers
             return View(record);
         }
 
+        public IActionResult NotFoundPage()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             _logger.LogInformation("Call privacy view");
