@@ -1,35 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sakugen.Controllers;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Sakugen.Repository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Xunit;
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
+using Sakugen.Interface;
+using Microsoft.AspNetCore.Mvc.Testing;
+using System.Diagnostics;
 
 namespace Sakugen.Controllers.Tests
 {
-    [TestClass()]
     public class HomeControllerTests
     {
-        private readonly HomeController _controller;
-        private ViewResult _result;
+        private readonly HttpClient _client;
 
-        public HomeControllerTests(HomeController controller)
+        public HomeControllerTests()
         {
-            _controller = controller;
+            var server = new WebApplicationFactory<Program>();
+            _client = server.CreateClient();
         }
 
-        [TestInitialize]
-        public void SetupContext()
-        {
-            _result = _controller.Index() as ViewResult;
-        }
 
-        [TestMethod()]
-        public void IndexViewResultNotNull()
+        [Fact]
+        public async void GetNotExistRecord()
         {
-            Assert.IsNotNull(_result);
+            var response = await _client.GetAsync("http://localhost:5073/notExistToken");
+
+            Assert.AreEqual("/Home/NotFoundPage", response.RequestMessage.RequestUri.AbsolutePath);
         }
     }
 }
