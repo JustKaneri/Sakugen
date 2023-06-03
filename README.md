@@ -14,7 +14,7 @@
 
 <p align="center">
   <img src="Images/Pc.png" width="350" title="Pc">
-  <img src="Images/Mobile.png" width="350" title="Mobile">
+  <img src="Images/Mobile.png" height="175" title="Mobile">
 </p>
 
 ## Licence
