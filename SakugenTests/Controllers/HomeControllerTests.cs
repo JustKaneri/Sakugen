@@ -24,11 +24,19 @@ namespace Sakugen.Controllers.Tests
 
 
         [Fact]
-        public async void GetNotExistRecord()
+        public async void GetNotExistRecordTest()
         {
             var response = await _client.GetAsync("http://localhost:5073/notExistToken");
 
             Assert.AreEqual("/Home/NotFoundPage", response.RequestMessage.RequestUri.AbsolutePath);
+        }
+
+        [Fact]
+        public async void GetExistRecordTest()
+        {
+            var response = await _client.GetAsync("http://localhost:5073/62a4bf15");
+
+            Assert.AreEqual(@"https://gist.github.com/Key16/b91562061506dca114388aa368800d6a", response.RequestMessage.RequestUri.ToString());
         }
     }
 }
